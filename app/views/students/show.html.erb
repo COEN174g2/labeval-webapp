@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Your Student ID:</strong>
+  <%= @student.studentid %>
+</p>
+
+  <p>
+	  <strong>My Responses</strong>
+	  <br>
+    <% if @student.responses.length > 0 %>
+	   <% @student.responses.each do |response| %>
+      <p>
+  	  	<%= link_to response.cid, response %>
+        <strong> Completed At </strong>
+        <%= response.created_at %>
+      </p>
+      <% end %>
+    <% else %>
+      <p> You have not filled out a response yet. </p>
+	  <% end %>
+  </p>
+
+<% if @student.questionnaires.length > 0 %>
+  <p> All My Evaluations: 
+  <ul><% @student.questionnaires.each do |questionnaire| %>
+  	<li><%= link_to questionnaire.cid+" "+questionnaire.name, new_student_response_url({:student_id => params[:id], :questionnaire => questionnaire}) %></li>
+  <% end %>
+  </ul>
+  </p>
+<% end %>
+
+<%= button_to 'Update My Profile', edit_student_path(@student), { class: 'btn', method: 'get'} %>

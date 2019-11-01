@@ -1,0 +1,15 @@
+<p id="alert"><%= alert %></p>
+<h1>Existing User Login</h1>
+<%= form_tag login_url do |form| %>
+  <div class="field">
+    <%= label_tag :ID %>
+    <%= text_field_tag :ID %>
+  </div>
+  <div class="field">
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Login" %>
+  </div>
+<% end %>

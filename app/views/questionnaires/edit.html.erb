@@ -1,0 +1,37 @@
+<h1>Editing Questionnaire</h1>
+
+<%= render 'form', questionnaire: @questionnaire %>
+<% @questionnaire.questions.each do |question| %>
+	<strong> Question <%= question.id %> </strong>
+	<%= form_with(model: question, local: true) do |form| %>
+	  <% if question.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+	      <ul>
+	      <% question.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+	  <div class="field">
+	    <%= form.label :description %>
+	    <%= form.text_field :description, :size => 150 %>
+	  </div>
+
+	  <div class="field">
+	    <%= form.label :is_open %>
+	    <%= form.check_box :is_open %>
+	  </div>
+
+	  <div class="actions">
+	    <%= form.submit %>
+	  </div>
+	<% end %>
+
+<% end %>
+
+<%= link_to 'Show', @questionnaire %> |
+<%= link_to 'Back', questionnaires_path %>

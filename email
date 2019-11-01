@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "This is a reminder that you have not completed the evaluation for" $1 " yet. Click here to complete: " $2 | mail -s "Lab Evaluation Reminder" jluo1@scu.edu

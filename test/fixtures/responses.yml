@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cid: MyString
+  student: one
+  questionnaire: one
+
+two:
+  cid: MyString
+  student: two
+  questionnaire: two

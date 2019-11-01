@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Assign Questionnaires to Students</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Student</th>
+      <th>Questionnaire</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @qs.each do |q| %>
+      <tr>
+        <td><%= q.student.studentid %></td>
+        <td><%= q.questionnaire.cid %></td>
+        <td><%= link_to 'Show', q %></td>
+        <td><%= link_to 'Edit', edit_q_path(q) %></td>
+        <td><%= link_to 'Destroy', q, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Assignment', new_q_path %>
