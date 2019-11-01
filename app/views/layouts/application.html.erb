@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Labeval</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="<%= controller.controller_name %>">
+    <div id="header"></div>
+      <%= button_to "Home", landing_index_path, :class => "btn", :method => "get" %>
+      <% if session[:user_id] %>
+        <%= button_to "My Profile", profile_url, :class => "btn", :method => "get" %>
+        <%= button_to "Logout", logout_url, :class => "btn", :method => "delete" %>
+      <% else %>
+      <%= button_to "Login", login_url, :class => "btn", :method => "get" %>
+      <% end %>
+    <div class="center">
+      <%= yield %>
+    </div>
+  </body>
+</html>

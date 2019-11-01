@@ -1,0 +1,5 @@
+<h1>My response for <%= Questionnaire.find(params[:questionnaire]).cid %> </h1>
+
+<%= render 'form', response: @response %>
+
+<%= link_to 'Back', profile_path %>

@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Welcome, </strong>
+  <%= @professor.name %>!
+</p>
+
+<% if @professor.questionnaires.length > 0 %>
+  <p>
+	  <strong>My Questionnaires</strong>
+	  <ul>
+	  <% @professor.questionnaires.each do |questionnaire| %>
+	  	<li><%= link_to questionnaire.name, questionnaire %></li>
+	  <% end %>
+	  </ul>
+  </p>
+<% else %>
+  <p> You have no evaluation yet. Please come back later </p>
+<% end %>
+
+<%= button_to 'Update My Profile', edit_professor_path(@professor), { class: 'btn', method: 'get'} %>

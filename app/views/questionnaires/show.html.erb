@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<h1> Review Evaluation Details </h1>
+
+<p>
+  <strong>Course Number:</strong>
+  <%= @questionnaire.cid %>
+</p>
+
+<p>
+  <strong>Course name:</strong>
+  <%= @questionnaire.name %>
+</p>
+
+<p>
+  <strong>Professor:</strong>
+  <%= @questionnaire.professor.name %>
+</p>
+
+<p>
+  <% @questionnaire.questions.each do |question| %>
+  	<p>Question <%= question.id %> : <%= question.description %></p>
+  <% end %>
+</p>
+
+<%= button_to 'View Data Analytics', root_url+'404.html', { class: 'btn', method: 'get' } %>
+
+<% if session[:user_id] %>
+<%= button_to 'Back', professor_url, { class: 'btn', method: 'get'} %>
+<% else %>
+<%= link_to 'Edit', edit_questionnaire_path(@questionnaire) %> |
+<%= link_to 'Back', questionnaires_path %>
+<% end %>
