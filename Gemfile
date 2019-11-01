@@ -35,7 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use roo for xlsx parsing
 gem "roo", "~> 2.8.0"
-gem "rubyzip", "1.2.2"
+gem "rubyzip", "1.3.0"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
