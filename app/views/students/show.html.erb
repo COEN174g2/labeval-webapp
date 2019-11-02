@@ -24,7 +24,7 @@
 <% if @student.questionnaires.length > 0 %>
   <p> All My Evaluations: 
   <ul><% @student.questionnaires.each do |questionnaire| %>
-  	<li><%= link_to questionnaire.cid+" "+questionnaire.name, new_student_response_url({:student_id => params[:id], :questionnaire => questionnaire}) %></li>
+  	<li><%= link_to questionnaire.cid+" "+questionnaire.name, new_student_response_url({:student_id => params[:id], :questionnaire_id => questionnaire.id, :questionnaire_cid => questionnaire.cid, :questionnaire_name => questionnaire.name}) %></li>
   <% end %>
   </ul>
   </p>

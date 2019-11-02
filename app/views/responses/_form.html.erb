@@ -13,7 +13,7 @@
 
   <div class="field" style="display:none;">
     <%= form.label :cid %>
-    <%= form.text_field :cid, :value => params[:questionnaire] %>
+    <%= form.text_field :cid, :value => params[:questionnaire_cid] %>
   </div>
 
   <div class="field" style="display:none;">
@@ -23,14 +23,14 @@
 
   <div class="field" style="display:none;">
     <%= form.label :questionnaire_id %>
-    <%= form.text_field :questionnaire_id, :value => params[:questionnaire] %>
+    <%= form.text_field :questionnaire_id, :value => params[:questionnaire_id] %>
   </div>
 
-  <%= Questionnaire.find(params[:questionnaire]).questions.each do |question| %>
+  <%= Questionnaire.find(params[:questionnaire_id]).questions.each do |question| %>
     <% if question.is_open %>
        <div class="field">
         <%= form.label :question, question.description %>
-        <%= form.text_field :question, maxlength: 100 %>
+        <!-- <%= render partial: "answers/form", locals: {answer: Answer.new} %> -->
       </div>
     <% else %>
       <div class="field choice">

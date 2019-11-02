@@ -5,16 +5,6 @@ Rails.application.routes.draw do
   get 'admin/index'
   post 'admin/index'
 
-  # authenticated :student do
-  #   student = Student.find_by(studentid: params[:id])
-  #   professor = Professor.find_by(name: params[:id])
-  #   if student
-  #     root 'students#show'
-  #   elsif professor
-  #     root 'professors#show'
-  #   end
-  # end
-
   root 'landing#index'
 
   controller :sessions do
