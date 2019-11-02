@@ -1,10 +1,15 @@
 class ResponsesController < ApplicationController
+  before_action :get_student
   before_action :set_response, only: [:show, :edit, :update, :destroy]
 
   # GET /responses
   # GET /responses.json
   def index
-    @responses = Response.all
+    if @student
+      @responses = @student.responses
+    else
+      @responses = Response.all
+    end
   end
 
   # GET /responses/1
@@ -14,7 +19,7 @@ class ResponsesController < ApplicationController
 
   # GET /responses/new
   def new
-    @response = Response.new
+    @response = @student.responses.build
   end
 
   # GET /responses/1/edit
@@ -24,11 +29,11 @@ class ResponsesController < ApplicationController
   # POST /responses
   # POST /responses.json
   def create
-    @response = Response.new(response_params)
+    @response = @student.responses.build(response_params)
 
     respond_to do |format|
       if @response.save
-        format.html { redirect_to student_responses_path(@response.student, @response), notice: 'Response was successfully created.' }
+        format.html { redirect_to student_responses_path(@student), notice: 'Response was successfully created.' }
         format.json { render :show, status: :created, location: @response }
       else
         format.html { render :new }
@@ -42,7 +47,7 @@ class ResponsesController < ApplicationController
   def update
     respond_to do |format|
       if @response.update(response_params)
-        format.html { redirect_to @response, notice: 'Response was successfully updated.' }
+        format.html { redirect_to student_response_path(@student), notice: 'Response was successfully updated.' }
         format.json { render :show, status: :ok, location: @response }
       else
         format.html { render :edit }
@@ -56,15 +61,19 @@ class ResponsesController < ApplicationController
   def destroy
     @response.destroy
     respond_to do |format|
-      format.html { redirect_to responses_url, notice: 'Response was successfully destroyed.' }
+      format.html { redirect_to student_responses_path(@student), notice: 'Response was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+
+    def get_student
+      @student = Student.find(params[:student_id])
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_response
-      @response = Response.find(params[:id])
+      @response = @student.responses.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

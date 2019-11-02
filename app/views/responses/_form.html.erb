@@ -1,4 +1,4 @@
-<%= form_with(model: response, local: true) do |form| %>
+<%= form_with(model: [@student, response], local: true) do |form| %>
   <% if response.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(response.errors.count, "error") %> prohibited this response from being saved:</h2>
@@ -26,7 +26,7 @@
     <%= form.text_field :questionnaire_id, :value => params[:questionnaire_id] %>
   </div>
 
-  <%= Questionnaire.find(params[:questionnaire_id]).questions.each do |question| %>
+  <% Questionnaire.find(params[:questionnaire_id]).questions.each do |question| %>
     <% if question.is_open %>
        <div class="field">
         <%= form.label :question, question.description %>
@@ -36,7 +36,7 @@
       <div class="field choice">
         <%= form.label :question, question.description %>
         <%= form.radio_button :question, '1' %>
-        <%= label :question, '1 - Strongly Disagree' %>
+        <%= label :question_1, '1 - Strongly Disagree' %>
         <%= form.radio_button :question, '2' %>
         <%= label :question_2, '2 - Mildly Disagree' %>
         <%= form.radio_button :question, '3' %>

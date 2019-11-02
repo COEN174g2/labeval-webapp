@@ -16,16 +16,15 @@
     <% Student.find(params[:student_id]).responses.each do |response| %>
       <tr>
         <td><%= response.cid %></td>
-        <td><%= response.student %></td>
+        <td><%= response.student.id %></td>
         <td><%= response.questionnaire %></td>
-        <td><%= link_to 'Show', response %></td>
-        <td><%= link_to 'Edit', edit_response_path(response) %></td>
-        <td><%= link_to 'Destroy', response, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', student_responses_path(response) %></td>
+        <td><%= link_to 'Edit', edit_student_response_path(@student, response) %></td>
+        <td><%= link_to 'Destroy', [@student, response], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show Student', [@student] %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Response', new_student_response_path({:student_id => params[:student_id] }) %>
