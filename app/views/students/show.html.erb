@@ -11,7 +11,7 @@
     <% if @student.responses.length > 0 %>
 	   <% @student.responses.each do |response| %>
       <p>
-  	  	<%= link_to response.cid, student_response_path(response) %>
+  	  	<%= link_to response.cid, student_response_path(@student, response) %>
         <strong> Completed At </strong>
         <%= response.created_at %>
       </p>

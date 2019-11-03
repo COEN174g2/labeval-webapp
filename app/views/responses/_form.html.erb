@@ -18,49 +18,69 @@
 
   <div class="field" style="display:none;">
     <%= form.label :student_id %>
-    <%= form.text_field :student_id, :value => params[:student_id] %>
+    <%= form.number_field :student_id, :value => @student.id %>
   </div>
 
   <div class="field" style="display:none;">
     <%= form.label :questionnaire_id %>
-    <%= form.text_field :questionnaire_id, :value => params[:questionnaire_id] %>
+    <%= form.number_field :questionnaire_id, :value => params[:questionnaire_id] %>
   </div>
 
-  <%= form.fields_for :answers do |ff| %>
-    <div>
-      <%= ff.label :name %>
-      <%= ff.text_field :name %>
+  <% Questionnaire.find(1).questions.each do |question| %>
+   <%= form.label :question, question.description %>
+   <%= form.fields_for :answers do |a| %>
+    <% if question.q_type == 1 %>
+        <div class="field">
+          <%= a.radio_button :choice, 1, :checked => "checked" %>
+          <%= a.label :choice, "1 - Strongly Disagree" %>
+          <%= a.radio_button :choice, 2 %>
+          <%= a.label :choice, "2 - Mildly Disagree" %>
+          <%= a.radio_button :choice, 3 %>
+          <%= a.label :choice, "3 - Neutral" %>
+          <%= a.radio_button :choice, 4 %>
+          <%= a.label :choice, "4 - Mildly Agree" %>
+          <%= a.radio_button :choice, 5 %>
+          <%= a.label :choice, "5 - Strongly Agree" %>
+        </div>
 
-      <% if ff.object.persisted? %>
-        <%= ff.check_box :_destroy %>
-        <%= ff.label :_destroy, "Destroy" %>
-      <% end %>
-    </div>
-  <% end %>
+    <% elsif question.q_type == 2 %>
+      
+        <div class="field">
+          <%= a.radio_button :choice, 1, :checked => "checked" %>
+          <%= a.label :choice, "<2" %>
+          <%= a.radio_button :choice, 2 %>
+          <%= a.label :choice, "2" %>
+          <%= a.radio_button :choice, 3 %>
+          <%= a.label :choice, "2.5" %>
+          <%= a.radio_button :choice, 4 %>
+          <%= a.label :choice, "3" %>
+          <%= a.radio_button :choice, 5 %>
+          <%= a.label :choice, ">3" %>
+        </div>
 
-  <!-- old form -->
-  <% Questionnaire.find(params[:questionnaire_id]).questions.each do |question| %>
-    <% if question.is_open %>
-       <div class="field">
-        <%= form.label :question, question.description %>
-        <%= render partial: "answers/form", locals: {answer: Answer.new} %>
+    <% elsif question.q_type == 3 %>
+
+        <div class="field">
+          <%= a.text_field :text, maxlength: 155 %>
+        </div>
+
+    <% end %> <!-- end of if-else -->
+
+      <div style="display:none;">
+        <div class="field">
+          <%= a.label :question_id %>
+          <%= a.number_field :question_id, :value => question.id %>
+        </div>
+
+        <div class="field">
+          <%= a.label :student_id %>
+          <%= a.number_field :student_id, :value => @student.id %>
+        </div>
       </div>
-    <% else %>
-      <div class="field choice">
-        <%= form.label :question, question.description %>
-        <%= form.radio_button :question, '1' %>
-        <%= label :question_1, '1 - Strongly Disagree' %>
-        <%= form.radio_button :question, '2' %>
-        <%= label :question_2, '2 - Mildly Disagree' %>
-        <%= form.radio_button :question, '3' %>
-        <%= label :question_3, '3 - Neutral' %>
-        <%= form.radio_button :question, '4' %>
-        <%= label :question_4, '4 - Mildly Agree' %>
-        <%= form.radio_button :question, '5' %>
-        <%= label :question_5, '5 - Strongly Agree' %>
-      </div>
-    <% end %>
-  <% end %>
+
+   <% end %> <!-- end of fields_for -->
+
+  <% end %> <!-- end of Questions loop-->
 
   <div class="actions">
     <%= form.submit({value:'Submit'}) %>

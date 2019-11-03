@@ -19,7 +19,9 @@ class ResponsesController < ApplicationController
 
   # GET /responses/new
   def new
+    @questionnaire_id = params[:questionnaire_id]
     @response = @student.responses.build
+    @response.answers.build
   end
 
   # GET /responses/1/edit
@@ -33,7 +35,7 @@ class ResponsesController < ApplicationController
 
     respond_to do |format|
       if @response.save
-        format.html { redirect_to student_responses_path(@student), notice: 'Response was successfully created.' }
+        format.html { redirect_to student_responses_path(@student, @response), notice: 'Response was successfully created.' }
         format.json { render :show, status: :created, location: @response }
       else
         format.html { render :new }
@@ -78,6 +80,6 @@ class ResponsesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def response_params
-      params.require(:response).permit(:cid, :student_id, :questionnaire_id, answers_attributes: [:choice, :text, :question_id])
+      params.require(:response).permit(:cid, :student_id, :questionnaire_id, answers_attributes: [:choice, :text, :question_id, :student_id])
     end
 end
