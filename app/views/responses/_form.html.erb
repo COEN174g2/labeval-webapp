@@ -26,11 +26,24 @@
     <%= form.text_field :questionnaire_id, :value => params[:questionnaire_id] %>
   </div>
 
+  <%= form.fields_for :answers do |ff| %>
+    <div>
+      <%= ff.label :name %>
+      <%= ff.text_field :name %>
+
+      <% if ff.object.persisted? %>
+        <%= ff.check_box :_destroy %>
+        <%= ff.label :_destroy, "Destroy" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <!-- old form -->
   <% Questionnaire.find(params[:questionnaire_id]).questions.each do |question| %>
     <% if question.is_open %>
        <div class="field">
         <%= form.label :question, question.description %>
-        <!-- <%= render partial: "answers/form", locals: {answer: Answer.new} %> -->
+        <%= render partial: "answers/form", locals: {answer: Answer.new} %>
       </div>
     <% else %>
       <div class="field choice">

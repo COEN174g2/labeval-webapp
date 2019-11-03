@@ -5,6 +5,11 @@ class QuestionsController < ApplicationController
   # GET /questions.json
   def index
     @questions = Question.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @questions.to_csv }
+    end
   end
 
   # GET /questions/1
@@ -69,6 +74,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:description, :is_open, :questionnaire_id)
+      params.require(:question).permit(:description, :q_type, :questionnaire_id)
     end
 end

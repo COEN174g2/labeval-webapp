@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Description</th>
-      <th>Is open</th>
+      <th>Type</th>
       <th>Questionnaire</th>
       <th colspan="3"></th>
     </tr>
@@ -16,7 +16,7 @@
     <% @questions.each do |question| %>
       <tr>
         <td><%= question.description %></td>
-        <td><%= question.is_open %></td>
+        <td><%= question.q_type %></td>
         <td><%= question.questionnaire.cid %></td>
         <td><%= link_to 'Show', question %></td>
         <td><%= link_to 'Edit', edit_question_path(question) %></td>

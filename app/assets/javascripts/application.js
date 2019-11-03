@@ -14,3 +14,12 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+function analytics () {
+	var questions = "http://localhost:3000/questions.csv";
+	var answers = "http://localhost:3000/answers.csv";
+	window.location.assign(questions);
+	setTimeout( () => {
+		window.location.assign(answers)}, 1000);
+	// send connection to server socket
+}

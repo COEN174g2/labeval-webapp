@@ -22,7 +22,9 @@
   <% end %>
 </p>
 
-<%= button_to 'View Data Analytics', root_url+'404.html', { class: 'btn', method: 'get' } %>
+<%= link_to "View Data Analytics", '#', 
+	id: "analytics", class: "btn", onclick: "analytics()"
+%>
 
 <% if session[:user_id] %>
 <%= button_to 'Back', professor_url, { class: 'btn', method: 'get'} %>
