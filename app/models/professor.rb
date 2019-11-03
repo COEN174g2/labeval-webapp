@@ -5,8 +5,7 @@ class Professor < ApplicationRecord
   has_secure_password
   validate :current_password_is_correct,
            if: :validate_password?, on: :update
-    validate :token_is_correct,
-           if: :validate_token?, on: :new
+  validate :token_is_correct, on: :create
 
   def current_password_is_correct
     # For some stupid reason authenticate always returns false when called on self
@@ -25,9 +24,6 @@ class Professor < ApplicationRecord
     !password.blank?
   end
 
-  def validate_token?
-    !token.blank?
-  end
-
   attr_accessor :current_password
+  attr_accessor :token
 end

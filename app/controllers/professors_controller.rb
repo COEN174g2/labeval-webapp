@@ -69,6 +69,6 @@ class ProfessorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def professor_params
-      params.require(:professor).permit(:name, :password, :password_confirmation, :current_password)
+      params.require(:professor).permit(:name, :password, :password_confirmation, :current_password, :token)
     end
 end
