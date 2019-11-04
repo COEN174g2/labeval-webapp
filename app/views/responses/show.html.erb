@@ -4,3 +4,11 @@
   <strong>Course:</strong>
   <%= @response.cid %>
 </p>
+
+<% @response.answers.each do |a| %>
+	<p>
+		<strong> <%= a.choice %> <%= a.text %> </strong>
+	</p>
+<% end %>
+
+<%= link_to "Back", profile_url %>

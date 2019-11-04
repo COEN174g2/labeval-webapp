@@ -1,0 +1,4 @@
+<h1>Send Scheduled Email Reminders</h1>
+<strong> Select date and time to send reminders to all students: </strong>
+<%= datetime_select("delay", "send_on", prompt: true)%>
+<%= button_to "Schedule", admin_email_path, { class: 'btn', method: 'get'} %>

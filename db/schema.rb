@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_02_231950) do
+ActiveRecord::Schema.define(version: 2019_11_03_215946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 2019_11_02_231950) do
     t.bigint "professor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "pname"
+    t.index ["cid", "pname"], name: "index_questionnaires_on_cid_and_pname", unique: true
     t.index ["professor_id"], name: "index_questionnaires_on_professor_id"
   end
 

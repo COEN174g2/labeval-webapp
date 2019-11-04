@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :qs
   get 'admin/index'
   post 'admin/index'
+  get 'admin/upload'
+  get 'admin/email'
 
   root 'landing#index'
   
