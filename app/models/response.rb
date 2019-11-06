@@ -5,4 +5,5 @@ class Response < ApplicationRecord
   accepts_nested_attributes_for :answers
 
   validates :cid, presence: true
+  validates :questionnaire_id, uniqueness: { scope: :student_id }
 end

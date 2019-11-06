@@ -26,9 +26,8 @@
 	id: "analytics", class: "btn", onclick: "analytics()"
 %>
 
-<% if session[:user_id] %>
-<%= button_to 'Back', professor_url, { class: 'btn', method: 'get'} %>
+<% if session[:type] == "professor" %>
+<%= button_to 'Back', profile_url, { class: 'btn', method: 'get'} %>
 <% else %>
-<%= link_to 'Edit', edit_questionnaire_path(@questionnaire) %> |
-<%= link_to 'Back', questionnaires_path %>
+<%= link_to 'Edit', edit_questionnaire_path(@questionnaire) %>
 <% end %>

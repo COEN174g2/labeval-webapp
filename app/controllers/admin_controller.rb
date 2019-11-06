@@ -36,4 +36,9 @@ class AdminController < ApplicationController
   	end
 
   end
+
+  def email
+    exec( "echo 'This is a reminder that you have not completed the evaluation for #{params[:course]} yet. Click here to complete: #{params[:url]}' | mail -s 'Lab Evaluation Reminder' jluo1@scu.edu" )
+  end
+
 end

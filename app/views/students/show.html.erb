@@ -5,22 +5,6 @@
   <%= @student.studentid %>
 </p>
 
-  <p>
-	  <strong>My Responses</strong>
-	  <br>
-    <% if @student.responses.length > 0 %>
-	   <% @student.responses.each do |response| %>
-      <p>
-  	  	<%= link_to response.cid, student_response_path(@student, response) %>
-        <strong> Completed At </strong>
-        <%= response.created_at %>
-      </p>
-      <% end %>
-    <% else %>
-      <p> You have not filled out a response yet. </p>
-	  <% end %>
-  </p>
-
 <% if @student.questionnaires.length > 0 %>
   <p> All My Evaluations: 
   <ul><% @student.questionnaires.each do |questionnaire| %>
@@ -31,3 +15,4 @@
 <% end %>
 
 <%= button_to 'Update My Profile', edit_student_path(@student), { class: 'btn', method: 'get'} %>
+<%= button_to 'View My Responses', student_responses_path(@student), { class: 'btn', method: 'get'} %>
