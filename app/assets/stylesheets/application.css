@@ -14,12 +14,19 @@
  *= require_self
  */
 
+body {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #header {
-height: 100px;
-background-image: url("se.jpg");
-background-repeat: no-repeat;
-background-size: contain;
-background-position: center center;
+  height: 100px;
+  background-image: url("se.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin: 20px;
 }
 
 .center {
@@ -35,7 +42,7 @@ background-position: center center;
   color: white;
   padding: 15px 20px;
   margin: 4px;
-  font-size: 16px;
+  font-size: 20px;
   cursor: pointer;
   vertical-align:top;
 }
@@ -50,4 +57,17 @@ input.radio {
   clear: none;
   margin: 2px 2px 0 2px;
   display: block;
+}
+
+h1, strong {
+  font-size: 30px;
+}
+
+li {
+  margin: 10px;
+}
+
+a, td {
+  font-size: 23px;
+  margin: 30px;
 }
