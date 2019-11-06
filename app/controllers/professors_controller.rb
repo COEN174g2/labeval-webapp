@@ -10,6 +10,7 @@ class ProfessorsController < ApplicationController
   # GET /professors/1
   # GET /professors/1.json
   def show
+    # @courses = Questionnaire.where(pname: @professor.name)
   end
 
   # GET /professors/new
@@ -28,6 +29,15 @@ class ProfessorsController < ApplicationController
 
     respond_to do |format|
       if @professor.save
+        # check for questionnaire associations
+        @courses = Questionnaire.where(pname: @professor.name)
+        @courses.each do |course|
+          if !course.professor_id
+            course.professor_id = @professor.id
+            course.save
+          end
+        end
+
         format.html { redirect_to @professor, notice: 'Professor was successfully created.' }
         format.json { render :show, status: :created, location: @professor }
       else

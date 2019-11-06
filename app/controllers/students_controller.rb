@@ -54,10 +54,9 @@ class StudentsController < ApplicationController
   # DELETE /students/1
   # DELETE /students/1.json
   def destroy
-    @student.destroy if @student.id == session[:user_id]
-    session[:cart_id] = nil
+    @student.destroy
     respond_to do |format|
-      format.html { redirect_to landing_index_url, notice: 'Account was successfully deleted.' }
+      format.html { redirect_to students_url, notice: 'Account was successfully deleted.' }
       format.json { head :no_content }
     end
   end
