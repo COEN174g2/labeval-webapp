@@ -31,11 +31,11 @@
    <%= form.fields_for :answers do |a| %>
     <% if question.q_type == 1 %>
         <div class="field">
-          <%= a.radio_button :choice, 1, :checked => "checked" %>
+          <%= a.radio_button :choice, 1 %>
           <%= a.label :choice, "1 - Strongly Disagree" %>
           <%= a.radio_button :choice, 2 %>
           <%= a.label :choice, "2 - Mildly Disagree" %>
-          <%= a.radio_button :choice, 3 %>
+          <%= a.radio_button :choice, 3, :checked => "checked" %>
           <%= a.label :choice, "3 - Neutral" %>
           <%= a.radio_button :choice, 4 %>
           <%= a.label :choice, "4 - Mildly Agree" %>

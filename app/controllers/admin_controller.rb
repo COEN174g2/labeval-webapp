@@ -47,7 +47,7 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.html { render :email, notice: 'Sent reminders successfully!' }
     end
-    exec( "echo 'This is a reminder that you have not completed the evaluation for COEN 174L yet. Click here to complete: http://localhost:3000/profile' | mail -s 'Lab Evaluation Reminder' jluo1@scu.edu" )
+    exec( "echo 'This is a reminder that you have not completed the evaluation for COEN 174L yet. Click here to complete: http://localhost:3000/login' | mail -s 'Lab Evaluation Reminder' jluo1@scu.edu" )
   end
 
 end
