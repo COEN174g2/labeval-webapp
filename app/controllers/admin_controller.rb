@@ -8,6 +8,7 @@ class AdminController < ApplicationController
     courses = []
     title = []
     instructor = []
+    studentid = []
     @z = []
 
     # all columns have same num of rows
@@ -15,10 +16,11 @@ class AdminController < ApplicationController
       courses[i] = { :cid => s.column(3)[i] + s.column(4)[i]}
       title[i] = { :name => s.column(5)[i] }
       instructor[i] = { :pname => s.column(7)[i] }
+      studentid[i] = { :studentid => s.column(9)[i] }
     end
 
     for i in (0...courses.length) do 
-      @z[i] = (courses[i].merge!(title[i])).merge!(instructor[i])
+      @z[i] = ((courses[i].merge!(title[i])).merge!(instructor[i])).merge!(studentid[i])
     end
 
     # no section differences
@@ -28,8 +30,14 @@ class AdminController < ApplicationController
     # spreadsheet upload results
     respond_to do |format|
       begin
-        Questionnaire.create!(@z)
-        format.html { render :upload, notice: 'Registration Data Successfully Uploaded' }
+        format.html { render :upload, notice: 'Data Successfully Uploaded' }
+        if Questionnaire.size > 0
+          for i in (0...@z.length) do 
+            Questionnaire.update(@z[i])
+          end
+        else
+          Questionnaire.create(@z)
+        end
       rescue
         format.html { render :upload, notice: 'Error Uploading Data' }
       end
@@ -39,15 +47,15 @@ class AdminController < ApplicationController
 
   def email
     respond_to do |format|
-      format.html { render :email }
+      format.html { render :email, notice: 'Sent reminders successfully!' }
     end
   end
 
   def sendemail
     respond_to do |format|
-      format.html { render :email, notice: 'Sent reminders successfully!' }
+      format.html { redirect_to admin_email_path, notice: 'Sent reminders successfully!' }
     end
-    exec( "echo 'This is a reminder that you have not completed the evaluation for COEN 174L yet. Click here to complete: http://localhost:3000/login' | mail -s 'Lab Evaluation Reminder' jluo1@scu.edu" )
+    system( "echo 'This is a reminder that you have not completed the evaluation for COEN 174L yet. Click here to complete: http://localhost:3000/login' | mail -s 'Lab Evaluation Reminder' jluo1@scu.edu" )
   end
 
 end
