@@ -9,15 +9,15 @@
 		</p>
 
 	  <p> All My Evaluations: 
-	  <ul><% @student.questionnaires.each do |questionnaire| %>
-	  	<li><%= link_to questionnaire.cid+" "+questionnaire.name, new_student_response_url(@student, :questionnaire_id => questionnaire.id, :questionnaire_cid => questionnaire.cid) %></li>
-	  <% end %>
-	  </ul>
+		  <ul><% @student.questionnaires.each do |questionnaire| %>
+		  	<li><%= link_to questionnaire.cid+" "+questionnaire.name, new_student_response_url(@student, :questionnaire_id => questionnaire.id, :questionnaire_cid => questionnaire.cid) %></li>
+		  <% end %>
+		  </ul>
 	  </p>
 	<% else %>
 		<li><%= link_to "COEN 174L Software Engineering Lab", new_student_response_url(@student, :questionnaire_id => 1, :questionnaire_cid => "COEN 174L") %></li>
 	<% end %>
 	
-<%= button_to 'Update My Profile', edit_student_path(@student), { class: 'btn', method: 'get'} %>
-<%= button_to 'View My Responses', student_responses_path(@student), { class: 'btn', method: 'get'} %>
+	<%= button_to 'Update My Profile', edit_student_path(@student), { class: 'btn', method: 'get'} %>
+	<%= button_to 'View My Responses', student_responses_path(@student), { class: 'btn', method: 'get'} %>
 <% end %>

@@ -28,6 +28,15 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.save
+        # check for questionnaire associations
+        @evaluations = Questionnaire.where(studentid: @student.studentid)
+        @evaluations.each do |evaluation|
+          if !evaluation.student_id && (evaluation.studentid == @student.studentid)
+            evaluation.student_id = @student.id
+            evaluation.save
+          end
+        end
+
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
         format.json { render :show, status: :created, location: @student }
       else

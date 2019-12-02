@@ -20,9 +20,9 @@ function analytics () {
 	var answers = "http://localhost:3000/answers.csv";
 	var view = "http://127.0.0.1:8080/data_analytics.html";
 	window.location.assign(questions);
-	setTimeout( () => {
+	setTimeout( function() {
 		window.location.assign(answers)}, 1000);
-	setTimeout( () => {
+	setTimeout( function() {
 		window.location.assign(view)
 	}, 2000);
 }
