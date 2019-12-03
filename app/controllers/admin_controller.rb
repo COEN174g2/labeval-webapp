@@ -55,6 +55,7 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_email_path, notice: 'Sent reminders successfully!' }
     end
+    
     if params[:isnow] == 'true'
       print "true"
       Student.all.each do |student|
