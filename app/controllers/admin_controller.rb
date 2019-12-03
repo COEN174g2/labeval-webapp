@@ -55,7 +55,21 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_email_path, notice: 'Sent reminders successfully!' }
     end
-    StudentMailer.reminder_email(@student).deliver!
+    if params[:isnow] == 'true'
+      print "true"
+      Student.all.each do |student|
+        if student.email
+          StudentMailer.reminder_email(student).deliver!
+        end
+      end
+    else
+      print "false"
+      Student.all.each do |student|
+        if student.email
+          StudentMailer.reminder_email(student).deliver_later!(wait: 1.hour)
+        end
+      end
+    end
   end
 
 end
