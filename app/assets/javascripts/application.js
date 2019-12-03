@@ -16,13 +16,6 @@
 //= require_tree .
 
 function analytics () {
-	var questions = "http://localhost:3000/questions.csv";
-	var answers = "http://localhost:3000/answers.csv";
 	var view = "http://127.0.0.1:8080/data_analytics.html";
-	window.location.assign(questions);
-	setTimeout( function() {
-		window.location.assign(answers)}, 1000);
-	setTimeout( function() {
-		window.location.assign(view)
-	}, 2000);
+	window.location.assign(view);
 }
