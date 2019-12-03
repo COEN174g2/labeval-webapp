@@ -15,7 +15,7 @@
 		  </ul>
 	  </p>
 	<% else %>
-		<li><%= link_to "COEN 174L Software Engineering Lab", new_student_response_url(@student, :questionnaire_id => 1, :questionnaire_cid => "COEN 174L") %></li>
+		<p> You don't have any evaluations yet. </p>
 	<% end %>
 	
 	<%= button_to 'Update My Profile', edit_student_path(@student), { class: 'btn', method: 'get'} %>

@@ -16,18 +16,23 @@
     <%= form.text_field :studentid %>
   </div>
 
+    <div class="field">
+    <%= form.label :email, :value => "SCU Email" %>
+    <%= form.text_field :email %>
+  </div>
+
   <div class="field">
     <%= form.label :current_password %>
     <%= form.password_field :current_password %>
   </div>
 
   <div class="field">
-    <%= form.label :password %>
+    <%= form.label :password, :value => "New Password" %>
     <%= form.password_field :password %>
   </div>
 
   <div class="field">
-    <%= form.label :password_confirmation %>
+    <%= form.label :password_confirmation, :value => "New Password Confirmation" %>
     <%= form.password_field :password_confirmation %>
   </div>
 

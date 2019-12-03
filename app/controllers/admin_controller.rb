@@ -55,7 +55,7 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_email_path, notice: 'Sent reminders successfully!' }
     end
-    system( "echo 'This is a reminder that you have not completed the evaluation for COEN 174L yet. Click here to complete: http://localhost:3000/login' | mail -s 'Lab Evaluation Reminder' jluo1@scu.edu" )
+    system( "echo 'This is a reminder that you have not completed all your lab evaluations yet. Click here to complete: https://labeval.herokuapp.com/login' | mail -s 'Lab Evaluation Reminder' jluo1@scu.edu | heroku run console --app=labeval --no-tty" )
   end
 
 end
