@@ -16,6 +16,6 @@
 //= require_tree .
 
 function analytics () {
-	var view = "http://127.0.0.1:8080/data_analytics.html";
+	var view = "https://coen174g2.github.io/labeval-da/data_analytics.html";
 	window.location.assign(view);
 }
