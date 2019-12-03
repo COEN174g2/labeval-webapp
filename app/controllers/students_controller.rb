@@ -32,6 +32,7 @@ class StudentsController < ApplicationController
         @evaluations = Questionnaire.where(studentid: @student.studentid)
         @evaluations.each do |evaluation|
           if !evaluation.student_id && (evaluation.studentid == @student.studentid)
+            Q.create(student_id: @student.id, questionnaire_id: evaluation.id)
             evaluation.student_id = @student.id
             evaluation.save
           end
