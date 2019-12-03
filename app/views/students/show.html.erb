@@ -2,11 +2,11 @@
 
 
 <% if session[:user_id] %>
+	<p>
+	  <strong>Your Student ID:
+	  <%= @student.studentid %></strong>
+	</p>
 	<% if @student.questionnaires.length > 0 %>
-		<p>
-		  <strong>Your Student ID:
-		  <%= @student.studentid %></strong>
-		</p>
 
 	  <p> All My Evaluations: 
 		  <ul><% @student.questionnaires.each do |questionnaire| %>

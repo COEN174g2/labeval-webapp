@@ -10,6 +10,7 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
+    @student = Student.find_by(studentid: session[:user_id])
   end
 
   # GET /students/new
