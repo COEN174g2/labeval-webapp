@@ -37,6 +37,10 @@ class StudentsController < ApplicationController
           end
         end
 
+        StudentMailer.reminder_email(@student).deliver!
+
+        # SendEmailJob.set(wait: 1.seconds).perform_later(@student)
+
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
         format.json { render :show, status: :created, location: @student }
       else
