@@ -2,11 +2,9 @@
 
 <h1>Send Scheduled Email Reminders</h1>
 <strong> Reminders will be sent to all students. </strong>
-<strong> Send Now: </strong>
 <p><%= button_to "Deliver Reminders Now", admin_sendemail_path(:isnow => "true"), method: :post %></p>
 
 <div>
-<strong> Select date and time to send reminders </strong>
-<%= datetime_select("delay", "send_on", prompt: true) %>
-<p><%= button_to "Schedule For Later", admin_sendemail_path, method: :post %></p>
+<%= date_select :regdate, :date, order: [:year, :month, :day] %>
+<p><%= button_to "Schedule to Send Later", admin_sendemail_path, method: :post %></p>
 </div>

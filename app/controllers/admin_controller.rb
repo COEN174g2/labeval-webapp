@@ -67,7 +67,7 @@ class AdminController < ApplicationController
       print "false"
       Student.all.each do |student|
         if student.email
-          StudentMailer.reminder_email(student).deliver_later!(wait: 1.hour)
+          StudentMailer.reminder_email(student).deliver_later!(wait: 1.day)
         end
       end
     end
