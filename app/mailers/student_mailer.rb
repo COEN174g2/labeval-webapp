@@ -3,6 +3,8 @@ class StudentMailer < ApplicationMailer
 
 	def reminder_email(student)
 		@student = student
-		mail(to: @student.email, subject: 'Lab Evaluation Reminder')
+		if @student.email
+			mail(to: @student.email, subject: 'Lab Evaluation Reminder')
+		end
 	end
 end

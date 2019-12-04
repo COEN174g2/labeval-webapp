@@ -59,14 +59,14 @@ class AdminController < ApplicationController
     if params[:isnow] == 'true'
       print "true"
       Student.all.each do |student|
-        if student.email
+        if !student.email.blank?
           StudentMailer.reminder_email(student).deliver!
         end
       end
     else
       print "false"
       Student.all.each do |student|
-        if student.email
+        if !student.email.blank?
           StudentMailer.reminder_email(student).deliver_later!(wait: 1.day)
         end
       end
