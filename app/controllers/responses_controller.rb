@@ -38,7 +38,7 @@ class ResponsesController < ApplicationController
         format.html { redirect_to student_responses_path(@student, @response), notice: 'Response was successfully created.' }
         format.json { render :show, status: :created, location: @response }
       else
-        format.html { render :new }
+        format.html { redirect_to student_responses_path(@student, @response), notice: 'You have already submitted the response.'}
         format.json { render json: @response.errors, status: :unprocessable_entity }
       end
     end
@@ -49,7 +49,7 @@ class ResponsesController < ApplicationController
   def update
     respond_to do |format|
       if @response.update(response_params)
-        format.html { redirect_to student_response_path(@student), notice: 'Response was successfully updated.' }
+        format.html { redirect_to student_response_path(@student), notice: 'You have already submitted the response.' }
         format.json { render :show, status: :ok, location: @response }
       else
         format.html { render :edit }
